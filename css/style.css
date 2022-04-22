@@ -140,6 +140,7 @@ body {
   padding-top: 32px;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 250ms;
+  transition-property: color;
 }
 
 .nav-contact {
@@ -152,6 +153,7 @@ body {
   padding-top: 32px;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 250ms;
+  transition-property: color;
 }
 
 .nav-contact:hover .contact-icons,
@@ -171,6 +173,7 @@ body {
   fill: var(--secondary-text-color);
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 250ms;
+  transition-property: color;
 }
 
 .nav-link:hover,
@@ -294,7 +297,24 @@ body {
   display: flex;
   align-items: center;
 }
+
+.text-overlap {
+  position: absolute;
+  background-color: rgba(47, 48, 58, 0.8);
+  padding-top: 27px;
+  padding-bottom: 27px;
+  text-align: center;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: 14px;
+  text-transform: uppercase;
+  color: var(--white-text-color);
+  width: 100%;
+  height: 70px;
+  bottom: 0%;
+}
+
 .activities-item {
+  position: relative;
   flex-basis: calc(
     (100% - (var(--indent) * (var(--items) - 1))) / var(--items)
   );
@@ -307,6 +327,7 @@ body {
 .works-picture {
   display: block;
 }
+
 .team {
   background-color: var(--button-background);
 }
@@ -367,6 +388,7 @@ body {
   background-color: var(--icon-background);
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 250ms;
+  transition-property: background-color;
 }
 /* box-shadow: 10px 0 10px -5px rgba(0, 0, 0, 0.3);
  } */
@@ -375,6 +397,7 @@ body {
   fill: var(--clients-icon-color);
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 250ms;
+  transition-property: color;
 }
 .social-link:hover .social-icons,
 .social-link:focus .social-icons {
@@ -405,6 +428,7 @@ body {
   border: 1px var(--clients-icon-color) solid;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 250ms;
+  transition-property: border-color;
 }
 .clients-link {
   width: 100%;
@@ -419,6 +443,7 @@ body {
   display: block;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 250ms;
+  transition-property: color;
 }
 
 .clients-item:hover .clients-icons,
@@ -483,13 +508,13 @@ body {
   background-color: var(--icon-background);
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 250ms;
+  transition-property: background-color;
 }
 
 .footer-icons {
   fill: var(--white-text-color);
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 250ms;
 }
+
 .right-link:hover,
 .right-link:focus {
   background-color: var(--accent-text-color-blue);
@@ -533,12 +558,13 @@ body {
   text-align: center;
   border: none;
   outline: none;
-  background: var(--button-background);
+  background-color: var(--button-background);
   padding: 6px 22px 6px 22px;
   border-radius: 4px;
   display: block;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 250ms;
+  transition-property: background-color, color;
 }
 
 .button-filter:hover,
@@ -604,6 +630,7 @@ border-radius: 4px; */
   color: var(--white-text-color);
   line-height: 1.6;
 
+  transition-property: transform;
   transform: translateY(100%);
   transition: transform 1000ms ease;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -645,9 +672,16 @@ border-radius: 4px; */
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.2);
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: initial;
+  transition: opacity 500ms ease-out 0.2s, visibility 500ms ease-out;
 }
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
 .modal {
   position: absolute;
   top: 50%;
@@ -658,13 +692,17 @@ border-radius: 4px; */
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
     0px 2px 1px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) rotate(0deg) scale(1);
+  opacity: 1;
+
+  transition: opacity 0.6s ease-out 0.2s, transform 0.6s ease-out 0.2s;
 }
 
-.backdrop.is-hidden {
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) rotate(-540deg) scale(0);
   opacity: 0;
-  pointer-events: none;
 }
+
 .close-modal-btn {
   position: absolute;
   width: 30px;
@@ -680,6 +718,5 @@ border-radius: 4px; */
   position: absolute;
   fill: var(--accent-text-color-black);
   position: absolute;
-
   transform: translate(-50%, -50%);
 }
